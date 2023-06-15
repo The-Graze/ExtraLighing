@@ -13,7 +13,7 @@ namespace ExtraLighing.Scripts
             {
                 t.gameObject.AddComponent<ShaderChanager>();
             }
-            if (this.GetComponent<SkinnedMeshRenderer>() != null || this.GetComponent<MeshRenderer>() != null && !gameObject.name.Contains("Wind"))
+            if (this.GetComponent<SkinnedMeshRenderer>() != null || this.GetComponent<MeshRenderer>() != null && !gameObject.name.Contains("Wind") && !this.GetComponent<MeshRenderer>().material.name.Contains("Water") && !this.GetComponent<MeshRenderer>().material.name.Contains("water"))
             {
                 foreach (Material m in this.GetComponent<Renderer>().materials)
                 {

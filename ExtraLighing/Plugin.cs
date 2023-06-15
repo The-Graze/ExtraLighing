@@ -23,8 +23,8 @@ namespace ExtraLighing
             ColourPlayerLights = Config.Bind("Settings", "Colour Player Lights?", true, "Should the Players lights match their colour");
             StaticColour = Config.Bind("Settings", "Static Light Colour", Color.white, "The Static Light Colour if you disable Player colours");
             MapChanges = Config.Bind("Settings", "Apply Map Lighting Changes", true, "Decide if you want the map chanaged applied (eg campfire)");
-            QualitySettings.SetQualityLevel((int)QualityLevel.Beautiful, true);
-            QualitySettings.pixelLightCount = int.MaxValue;
+            QualitySettings.SetQualityLevel((int)QualityLevel.Fastest);
+            QualitySettings.pixelLightCount = 12;
         }
         void Start()
         {Utilla.Events.GameInitialized += OnGameInitialized;}
