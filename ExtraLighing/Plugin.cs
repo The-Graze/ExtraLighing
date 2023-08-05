@@ -24,7 +24,7 @@ namespace ExtraLighing
             StaticColour = Config.Bind("Settings", "Static Light Colour", Color.white, "The Static Light Colour if you disable Player colours");
             MapChanges = Config.Bind("Settings", "Apply Map Lighting Changes", true, "Decide if you want the map chanaged applied (eg campfire)");
             QualitySettings.SetQualityLevel((int)QualityLevel.Fastest);
-            QualitySettings.pixelLightCount = 12;
+            QualitySettings.pixelLightCount = 20;
         }
         void Start()
         {Utilla.Events.GameInitialized += OnGameInitialized;}
@@ -36,7 +36,26 @@ namespace ExtraLighing
 
         void OnGameInitialized(object sender, EventArgs e)
         {
-            GameObject.Find("Level").AddComponent<ShaderChanager>();
+            foreach(Light l in Resources.FindObjectsOfTypeAll<Light>()) 
+            {
+                Destroy(l);
+            }
+            if (PlayerLights.Value == true)
+            {
+                GorillaTagger.Instance.offlineVRRig.gameObject.AddComponent<PlayerLight>();
+                GameObject rb = GameObject.Find("Rig Parent");
+                rb.transform.GetChild(0).gameObject.AddComponent<PlayerLight>();
+                rb.transform.GetChild(1).gameObject.AddComponent<PlayerLight>();
+                rb.transform.GetChild(2).gameObject.AddComponent<PlayerLight>();
+                rb.transform.GetChild(3).gameObject.AddComponent<PlayerLight>();
+                rb.transform.GetChild(4).gameObject.AddComponent<PlayerLight>();
+                rb.transform.GetChild(5).gameObject.AddComponent<PlayerLight>();
+                rb.transform.GetChild(6).gameObject.AddComponent<PlayerLight>();
+                rb.transform.GetChild(7).gameObject.AddComponent<PlayerLight>();
+                rb.transform.GetChild(8).gameObject.AddComponent<PlayerLight>();
+                rb.transform.GetChild(9).gameObject.AddComponent<PlayerLight>();
+            }
+            GameObject.Find("LocalObjects_Prefab").AddComponent<ShaderChanager>();
             if (MapChanges.Value == true)
             {
                 MapLightChanages();
@@ -47,7 +66,7 @@ namespace ExtraLighing
 
         void MapLightChanages()
         {
-            GameObject.Find("Level/forest/ForestObjects/campfire").AddComponent<CampFireLight>();
+            GameObject.Find("Environment Objects/LocalObjects_Prefab/Forest/Props/campfire").AddComponent<CampFireLight>();
         }
     }
 }

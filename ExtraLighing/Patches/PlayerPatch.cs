@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ExtraLighing.Patches
 {
-    [HarmonyPatch(typeof(VRRig))]
+  /*  [HarmonyPatch(typeof(VRRig))]
     [HarmonyPatch("Awake", MethodType.Normal)]
     internal class PlayerPatch
     {
@@ -18,5 +18,5 @@ namespace ExtraLighing.Patches
             }
                 return true;
         }
-    }
+    }*/
 }
